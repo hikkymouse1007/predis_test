@@ -3,9 +3,9 @@ COPY ./php/php.ini /usr/local/etc/php/
 COPY ./apache/*.conf /etc/apache2/sites-enabled/
 
 RUN apt-get update \
-  && apt-get install -y libzip-dev libpq-dev mariadb-client unzip\
-  && docker-php-ext-install zip pdo_mysql mysqli \
-  && docker-php-ext-enable mysqli
+    && apt-get install -y libzip-dev libpq-dev mariadb-client unzip\
+    && docker-php-ext-install zip pdo_mysql mysqli \
+    && docker-php-ext-enable mysqli
 
 #nodejs
 RUN apt-get install -y wget git unzip libpq-dev \
@@ -13,6 +13,11 @@ RUN apt-get install -y wget git unzip libpq-dev \
     &&  curl -sL https://deb.nodesource.com/setup_14.x | bash - \
     && : 'Install PHP Extensions' \
     && apt-get install -y nodejs
+
+#phpredis
+RUN pecl install -o -f redis \
+    &&  rm -rf /tmp/pear \
+    &&  docker-php-ext-enable redis
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
