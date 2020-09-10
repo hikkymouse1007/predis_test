@@ -93,6 +93,8 @@ REDIS_PORT=6379
     ],
 ~~~~
 ```
+
+```
 # .env
 ~~~
 BROADCAST_DRIVER=log
@@ -108,7 +110,8 @@ REDIS_PORT=6379
 ```
 
 ### メモ
-- redisコンテナのパスワードはdocker-composeと同じディレクトリの.envから読み込む。
+- redisコンテナのパスワードはdocker-composeと同じディレクトリの.envから読み込む。(今回は不使用)
+docker-composeへは同じ階層に.envを置くと環境変数を渡すことができる。
 
 ```
 # Also note the REDIS_PASSWORD setting in the redis startup command. This setting   will be defined in the applications .env file. Since the docker-compose.yml file is in the same directory as the .env file, it will make use of this setting.
