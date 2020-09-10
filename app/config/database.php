@@ -119,46 +119,19 @@ return [
 
     'redis' => [
 
-        'client' => 'phpredis',
-
-        'options' => [
-            'cluster' => env('REDIS_CLUSTER', 'redis'),
-        ],
+        'cluster' => false,
+        'client' => 'predis',
 
         'default' => [
-            'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
-            'port' => env('REDIS_PORT', '6379'),
-            'database' => '0',
-            'prefix' => 'd:',
+            'host'     => 'redis',
+            'port'     => 6379,
+            'database' => 0,
         ],
 
         'cache' => [
-            'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
-            'port' => env('REDIS_PORT', '6379'),
-            'database' => '0',
-            'prefix' => 'c:',
-        ],
-
-        'session' => [
-            'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT', '6379'),
-            'database' => '0',
-            'prefix' => 's:',
-        ],
-
-        'queue' => [
-            'url' => env('REDIS_URL'),
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT', '6379'),
-            'database' => '0',
-            'prefix' => 'q:',
+            'host'     => 'redis',
+            'port'     => 6379,
+            'database' => 0,
         ],
 
     ],
