@@ -10,8 +10,6 @@ services:
     privileged: true
     volumes:
       - ./app:/var/www/html
-    links:
-      - db
     depends_on:
       - db
 
@@ -43,7 +41,14 @@ services:
       - PMA_PASSWORD=test
     ports:
       - 8080:80
-    links:
-      - db
     depends_on:
       - db
+
+  redis:
+    image: redis:alpine
+    container_name: myapp-redis
+    command: redis-server --appendonly yes
+    volumes:
+    - ./data/redis:/data
+    ports:
+      - "6379:6379"
